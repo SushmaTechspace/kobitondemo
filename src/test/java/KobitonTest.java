@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.net.HttpURLConnection;
 
 public class KobitonTest {
     private static final Logger logger = LoggerFactory.getLogger(KobitonTest.class);
@@ -25,6 +26,25 @@ public class KobitonTest {
         logger.info("API Key: [REDACTED]");
         String kobitonServerUrl = "https://" + username + ":" + apiKey + "@api.kobiton.com/wd/hub";
         logger.info("Kobiton server URL: {}", kobitonServerUrl);
+
+        // Verify credentials by making a simple API call to Kobiton
+        logger.info("Verifying Kobiton credentials...");
+        String kobitonDevicesUrl = "https://" + username + ":" + apiKey + "@api.kobiton.com/v1/devices";
+        try {
+            HttpURLConnection connection = (HttpURLConnection) new URL(kobitonDevicesUrl).openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(10000);
+            connection.setReadTimeout(10000);
+            int responseCode = connection.getResponseCode();
+            logger.info("Kobiton API response code: {}", responseCode);
+            if (responseCode != 200) {
+                logger.error("Failed to authenticate with Kobiton. Response code: {}", responseCode);
+                throw new IllegalStateException("Failed to authenticate with Kobiton. Response code: " + responseCode);
+            }
+        } catch (Exception e) {
+            logger.error("Failed to verify Kobiton credentials: ", e);
+            throw e;
+        }
 
         // Set up desired capabilities for Kobiton
         DesiredCapabilities caps = new DesiredCapabilities();

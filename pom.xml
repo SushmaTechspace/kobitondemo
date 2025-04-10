@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <groupId>com.att.demo</groupId>
+    <groupId>org.example</groupId>
     <artifactId>AutomationAppiumTest</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -65,7 +65,7 @@
                 <version>3.2.5</version>
                 <configuration>
                     <includes>
-                        <include>**/KobitonTest.java</include>
+                        <include>KobitonTest.java</include> <!-- No package, so just the class name -->
                     </includes>
                     <!-- Explicitly use TestNG provider -->
                     <useSystemClassLoader>false</useSystemClassLoader>

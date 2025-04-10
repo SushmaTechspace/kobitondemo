@@ -24,6 +24,8 @@ public class KobitonTest {
             logger.error("Kobiton username or API key not provided via system properties.");
             throw new IllegalArgumentException("Kobiton username and API key must be provided via system properties.");
         }
+        logger.info("Username: {}", username);
+        logger.info("API Key: [REDACTED]"); // Avoid logging the API key for security
         String kobitonServerUrl = "https://" + username + ":" + apiKey + "@api.kobiton.com/wd/hub";
         logger.info("Kobiton server URL: {}", kobitonServerUrl);
 
@@ -48,7 +50,7 @@ public class KobitonTest {
         try {
             logger.info("Initializing Appium driver...");
             driver = new AndroidDriver(new URL(kobitonServerUrl), caps);
-            logger.info("Appium driver initialized successfully.");
+            logger.info("Appium driver initialized successfully. Session ID: {}", driver.getSessionId());
 
 
             // Wait for the app to load
@@ -71,7 +73,7 @@ public class KobitonTest {
             // Interact with a button (e.g., "Normal" button)
             logger.info("Clicking the 'Normal' button...");
             driver.findElement(By.id("com.example.android.apis:id/button_normal")).click();
-            Thread.sleep(3000);
+            Thread.sleep(3000); // Observe result
             logger.info("Test completed successfully.");
         } catch (Exception e) {
             logger.error("Test failed with exception: ", e);

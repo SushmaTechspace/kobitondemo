@@ -4,11 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
     <groupId>org.example</groupId>
     <artifactId>AutomationAppiumTest</artifactId>
     <version>1.0-SNAPSHOT</version>
-
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -20,7 +18,6 @@
         <logback.version>1.4.11</logback.version>
     </properties>
 
-
     <dependencies>
         <!-- Appium Java Client -->
         <dependency>
@@ -28,7 +25,6 @@
             <artifactId>java-client</artifactId>
             <version>${appium.version}</version>
         </dependency>
-
 
         <!-- TestNG for testing framework -->
         <dependency>
@@ -38,14 +34,12 @@
             <scope>test</scope>
         </dependency>
 
-
         <!-- SLF4J API -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-
 
         <!-- Logback for logging -->
         <dependency>
@@ -54,7 +48,6 @@
             <version>${logback.version}</version>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
@@ -65,7 +58,7 @@
                 <version>3.2.5</version>
                 <configuration>
                     <includes>
-                        <include>KobitonTest.java</include> <!-- No package, so just the class name -->
+                        <include>KobitonTest.java</include> <!-- No package -->
                     </includes>
                     <!-- Explicitly use TestNG provider -->
                     <useSystemClassLoader>false</useSystemClassLoader>
@@ -78,7 +71,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
 
             <!-- Maven Compiler Plugin -->
             <plugin>
@@ -93,6 +85,5 @@
         </plugins>
     </build>
 </project>
-
 
 

@@ -7,15 +7,12 @@ import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class KobitonTest {
     private static final Logger logger = LoggerFactory.getLogger(KobitonTest.class);
-
 
     @Test
     public void testKobiton() throws Exception {
         logger.info("Starting Kobiton test...");
-
 
         // Read credentials from system properties (set by GitHub Actions)
         String username = System.getProperty("username");
@@ -25,10 +22,9 @@ public class KobitonTest {
             throw new IllegalArgumentException("Kobiton username and API key must be provided via system properties.");
         }
         logger.info("Username: {}", username);
-        logger.info("API Key: [REDACTED]"); // Avoid logging the API key for security
+        logger.info("API Key: [REDACTED]");
         String kobitonServerUrl = "https://" + username + ":" + apiKey + "@api.kobiton.com/wd/hub";
         logger.info("Kobiton server URL: {}", kobitonServerUrl);
-
 
         // Set up desired capabilities for Kobiton
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -44,7 +40,6 @@ public class KobitonTest {
         caps.setCapability("app", "kobiton-store:v710607");
         logger.info("Desired capabilities set: {}", caps.asMap());
 
-
         // Initialize the driver
         AppiumDriver driver = null;
         try {
@@ -52,23 +47,19 @@ public class KobitonTest {
             driver = new AndroidDriver(new URL(kobitonServerUrl), caps);
             logger.info("Appium driver initialized successfully. Session ID: {}", driver.getSessionId());
 
-
             // Wait for the app to load
             logger.info("Waiting for the app to load...");
             Thread.sleep(5000);
-
 
             // Navigate to "Views" (scroll and click)
             logger.info("Navigating to 'Views'...");
             driver.findElement(By.xpath("//android.widget.TextView[@text='Views']")).click();
             Thread.sleep(2000);
 
-
             // Navigate to "Buttons" (scroll and click)
             logger.info("Navigating to 'Buttons'...");
             driver.findElement(By.xpath("//android.widget.TextView[@text='Buttons']")).click();
             Thread.sleep(2000);
-
 
             // Interact with a button (e.g., "Normal" button)
             logger.info("Clicking the 'Normal' button...");
@@ -87,6 +78,5 @@ public class KobitonTest {
         }
     }
 }
-
 
 

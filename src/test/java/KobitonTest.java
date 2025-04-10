@@ -23,7 +23,10 @@ public class KobitonTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platformName", "Android");
         caps.setCapability("appium:automationName", "UiAutomator2");
-        caps.setCapability("kobiton:deviceName", "Galaxy S22");
+        caps.setCapability("kobiton:deviceName", "Galaxy S21 5G");
+        caps.setCapability("platformVersion", "14");
+        caps.setCapability("kobiton:groupId", 12854);
+        caps.setCapability("kobiton:deviceGroup", "ORGANIZATION");
         caps.setCapability("kobiton:sessionName", "AT&T Demo Test - ApiDemos");
         caps.setCapability("kobiton:captureScreenshots", true);
         // ApiDemos app URL from Kobiton App Repository

@@ -2,10 +2,13 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.time.Duration;
 
 public class KobitonTest {
     private static final Logger logger = LoggerFactory.getLogger(KobitonTest.class);
@@ -49,21 +52,22 @@ public class KobitonTest {
 
             // Wait for the app to load
             logger.info("Waiting for the app to load...");
-            Thread.sleep(5000);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text='Views']")));
 
             // Navigate to "Views" (scroll and click)
             logger.info("Navigating to 'Views'...");
             driver.findElement(By.xpath("//android.widget.TextView[@text='Views']")).click();
-            Thread.sleep(2000);
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text='Focus']")));
 
-            // Navigate to "Buttons" (scroll and click)
-            logger.info("Navigating to 'Buttons'...");
-            driver.findElement(By.xpath("//android.widget.TextView[@text='Buttons']")).click();
-            Thread.sleep(2000);
+            // Navigate to "Focus" (scroll and click)
+            logger.info("Navigating to 'Focus'...");
+            driver.findElement(By.xpath("//android.widget.TextView[@text='Focus']")).click();
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.Button")));
 
-            // Interact with a button (e.g., "Normal" button)
-            logger.info("Clicking the 'Normal' button...");
-            driver.findElement(By.id("com.example.android.apis:id/button_normal")).click();
+            // Interact with a button on the "Focus" screen (generic locator for now)
+            logger.info("Clicking a button on the 'Focus' screen...");
+            driver.findElement(By.xpath("//android.widget.Button")).click();
             Thread.sleep(3000); // Observe result
             logger.info("Test completed successfully.");
         } catch (Exception e) {

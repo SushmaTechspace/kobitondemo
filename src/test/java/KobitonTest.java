@@ -40,7 +40,7 @@ public class KobitonTest {
         // Set up desired capabilities for Kobiton
         DesiredCapabilities capabilities = new DesiredCapabilities();
         // 1) Basic Session info
-        capabilities.setCapability("appium:sessionName", "Automation test session");
+        capabilities.setCapability("appium:sessionName", "Github actions integration");
         capabilities.setCapability("appium:sessionDescription", "");
         capabilities.setCapability("appium:deviceOrientation", "portrait");
         capabilities.setCapability("appium:captureScreenshots", true);

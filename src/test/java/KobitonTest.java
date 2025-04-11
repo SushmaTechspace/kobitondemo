@@ -41,7 +41,7 @@ public class KobitonTest {
         UiAutomator2Options options = new UiAutomator2Options();
 
         // (1) Session Info
-        // For Appium or standard capabilities, use "appium:" prefixs
+        // For Appium or standard capabilities, use "appium:" prefixs added
         options.setCapability("appium:sessionName", "Github actions integration");
         options.setCapability("appium:sessionDescription", "");
         options.setCapability("appium:deviceOrientation", "portrait");

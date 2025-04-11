@@ -81,7 +81,7 @@ public class KobitonTest {
 
 
             // Step Group 1: "Click Content"
-            driver.setSetting("kobiton:stepGroup", "Home screen Test");
+            driver.setSetting("kobiton:stepGroup", "Main Screen Test");
             logger.info("Clicking on 'Content'...");
             WebElement contentElement = driver.findElement(AppiumBy.accessibilityId("Content"));
             contentElement.click();
@@ -89,7 +89,7 @@ public class KobitonTest {
 
 
             // Step Group 2: "Click Resources"
-            driver.setSetting("kobiton:stepGroup", "Search screen Test");
+            driver.setSetting("kobiton:stepGroup", "Second screen Test");
             logger.info("Clicking on 'Resources' (first time)...");
             WebElement resourcesFirst = driver.findElement(AppiumBy.accessibilityId("Resources"));
             resourcesFirst.click();
@@ -97,7 +97,7 @@ public class KobitonTest {
 
 
             // Step Group 3: "Click Resources" (again)
-            driver.setSetting("kobiton:stepGroup", "Add to cart Test");
+            driver.setSetting("kobiton:stepGroup", "Final screen Test");
             logger.info("Clicking on 'Resources' (second time)...");
             WebElement resourcesSecond = driver.findElement(AppiumBy.accessibilityId("Resources"));
             resourcesSecond.click();

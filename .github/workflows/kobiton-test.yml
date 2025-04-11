@@ -2,8 +2,6 @@ name: Kobiton CI/CD Demo
 on:
   push:
     branches: [main]
-
-
 jobs:
   run-kobiton-test:
     runs-on: ubuntu-latest
@@ -11,13 +9,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
 
       - name: Cache Maven dependencies
         uses: actions/cache@v3
@@ -27,13 +23,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Debug Environment Variables
+        env:
+          KOBITON_USERNAME: ${{ secrets.KOBITON_USERNAME }}
+          KOBITON_API_KEY: ${{ secrets.KOBITON_API_KEY }}
+        run: |
+          echo "KOBITON_USERNAME: $KOBITON_USERNAME"
+          echo "KOBITON_API_KEY: [REDACTED]"
 
       - name: Run Kobiton Test
         env:
           KOBITON_USERNAME: ${{ secrets.KOBITON_USERNAME }}
           KOBITON_API_KEY: ${{ secrets.KOBITON_API_KEY }}
         run: mvn test -Dusername=$KOBITON_USERNAME -DapiKey=$KOBITON_API_KEY
-
 
       - name: Print Surefire Reports
         if: always()  # Run even if the test fails
@@ -46,15 +48,11 @@ jobs:
             echo "Surefire reports directory not found."
           fi
 
-
       - name: Upload Test Reports
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@c13487e7a7e1f6e1c5e6d2f5e8f4e9f3a2b1c0d  # Specific commit SHA for v3
         with:
           name: surefire-reports
           path: target/surefire-reports
-
-
-
 
 

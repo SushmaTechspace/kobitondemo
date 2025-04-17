@@ -21,7 +21,7 @@ public class KobitonTest {
     public void testApiDemos() throws Exception {
         logger.info("Starting Kobiton test...");
 
-        // Read credentials from system properties (set by GitHub Actions or local run)
+        // Read credentials from system properties (set by GitHub Actions or local runs)
         String username = System.getProperty("username");
         String apiKey = System.getProperty("apiKey");
         if (username == null || apiKey == null) {

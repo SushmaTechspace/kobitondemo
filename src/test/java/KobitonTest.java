@@ -61,7 +61,7 @@ public class KobitonTest {
         options.setCapability("kobiton:tags", Arrays.asList("smoke1", "smoke2"));
         options.setCapability("appium:kobi:retainDurationInSeconds", 0);
 
-        // (4) App to Install (from Kobiton store)
+        // (4) App to Install (from Kobiton stores)
         options.setCapability("appium:app", "kobiton-store:v697834");
 
         // (5) Additional app-specific capabilities
@@ -77,7 +77,7 @@ public class KobitonTest {
             driver = new AndroidDriver(new URL(kobitonServerUrl), options);
             logger.info("Appium driver initialized successfully. Session ID: {}", driver.getSessionId());
 
-            // Wait for the app to load
+            // Wait for the app to loads
             logger.info("Waiting for the app to load...");
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
             wait.until(ExpectedConditions.presenceOfElementLocated(AppiumBy.accessibilityId("Content")));
